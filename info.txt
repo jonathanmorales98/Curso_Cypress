@@ -1,0 +1,8 @@
+Pasos para crear documento Cypress
+
+1-> -npm init
+2-> instalar npx -npm install -g npx
+3-> instalar cypress -npx cypress install --force
+4-> abrir cypress con npm -node_modules\.bin\cypress open
+5-> abrir cypress con npx -npx cypress open
+

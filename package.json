@@ -1,0 +1,22 @@
+{
+  "name": "curso_cypress",
+  "version": "1.0.0",
+  "description": "curso inicial de cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanmorales98/Cypress.git"
+  },
+  "author": "Jonathan Morales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanmorales98/Cypress/issues"
+  },
+  "homepage": "https://github.com/jonathanmorales98/Cypress#readme",
+  "devDependencies": {
+    "cypress-plugin-tab": "^1.0.5"
+  }
+}
