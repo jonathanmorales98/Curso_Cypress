@@ -6,3 +6,7 @@ Pasos para crear documento Cypress
 4-> abrir cypress con npm -node_modules\.bin\cypress open
 5-> abrir cypress con npx -npx cypress open
 
+para instalar e xpath-> npm install -D cypress-xpath
+para llamar el xpath-> require('cypress-xpath');
+
+
