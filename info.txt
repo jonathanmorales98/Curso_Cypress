@@ -9,4 +9,6 @@ Pasos para crear documento Cypress
 para instalar e xpath-> npm install -D cypress-xpath
 para llamar el xpath-> require('cypress-xpath');
 
+para que reconosca el references-> npm i -D cypress
+
 
