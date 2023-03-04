@@ -2,7 +2,7 @@
 //para que funcionen los comandos
 require('cypress-xpath');
 
-describe("Assert ", () => {
+describe("Asserts", () => {
 
     it("Assert contains", () => {
             cy.visit("https://automationexercise.com/")
@@ -23,7 +23,7 @@ describe("Assert ", () => {
 
         }) //cierre de it
 
-    it.only("Assert Validando que es Nuevo y el precio", () => {
+    it("Assert Validando que es Nuevo y el precio", () => {
             cy.visit("https://automationexercise.com/")
             cy.title("eq","Automation Exercise")
             cy.wait(1000)
@@ -61,8 +61,80 @@ describe("Assert ", () => {
                     cy.get('.modal-footer > .btn').click()
                 }
             })
-
-
         }) //cierre de it
 
+        it("Assert Have.text y Contain.text", () => {
+            cy.visit("https://demoqa.com/text-box")
+            cy.title("eq","DEMOQA")
+            cy.wait(1000)
+
+            cy.get('#userName').type("Username")
+            cy.get('#userEmail').type("user@username.com")
+            cy.get('#submit').click()
+            cy.get('#name').should("have.text","Name:Username")
+            cy.get('#name').should("contain.text","Username")
+        }) //cierre de it
+
+        it("Assert Have.text más then", () => {
+            cy.visit("https://demoqa.com/text-box")
+            cy.title("eq","DEMOQA")
+            cy.wait(1000)
+
+            cy.get('#userName').type("Jonathan")
+            cy.get('#userName').should("have.value","Jonathan")
+            .then(()=>{
+                cy.get('#userEmail').type("user@username.com")
+                cy.get('#submit').click()
+            })
+
+        })// cierre de it
+
+        it("Assert have.class", () => {
+            cy.visit("https://demoqa.com/text-box")
+            cy.title("eq","DEMOQA")
+            cy.wait(1000)
+
+            cy.get("#userName").should("be.visible").should("have.class","mr-sm-2")
+            .then(()=>{
+                cy.get('#userName').type("Jonathan")
+            })
+
+        })// cierre de it
+
+        it("Assert have.class y función and", () => {
+            cy.visit("https://demoqa.com/text-box")
+            cy.title("eq","DEMOQA")
+            cy.wait(1000)
+
+            cy.get("#userName").should("be.visible").and("have.class","mr-sm-2")
+            .then(()=>{
+                cy.get('#userName').type("Jonathan")
+            })
+
+        })// cierre de it
+
+        it("Assert not.have.class ", () => {
+            cy.visit("https://demoqa.com/text-box")
+            cy.title("eq","DEMOQA")
+            cy.wait(1000)
+
+            cy.get("#userName").should("be.visible").and("not.have.class","mr-sm-22")
+            .then(()=>{
+                cy.get('#userName').type("Jonathan")
+            })
+
+        })// cierre de it
+
+        it.only("Assert length y css ", () => {
+            cy.visit("http://demo.seleniumeasy.com/table-pagination-demo.html")
+            cy.title("eq","Selenium Easy - Table with Pagination Demo")
+            cy.wait(1000)
+
+            cy.get("#myTable >tr >td").should("have.length",91).and("have.css","padding", "8px")
+            
+
+        })// cierre de it
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false;
+           });
 }) //cierre de descibe
