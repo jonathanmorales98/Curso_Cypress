@@ -125,15 +125,75 @@ describe("Asserts", () => {
 
         })// cierre de it
 
-        it.only("Assert length y css ", () => {
+        it("Assert length y css ", () => {
             cy.visit("http://demo.seleniumeasy.com/table-pagination-demo.html")
             cy.title("eq","Selenium Easy - Table with Pagination Demo")
             cy.wait(1000)
 
             cy.get("#myTable >tr >td").should("have.length",91).and("have.css","padding", "8px")
             
-
         })// cierre de it
+
+        it.only("Reto Asserts ", () => {
+            let time = 1500
+            cy.visit("http://demo.seleniumeasy.com/basic-first-form-demo.html")
+            cy.title("eq","Selenium Easy Demo - Simple Form to Automate using Selenium")
+            cy.wait(time)
+
+            let a = 20
+            let b = 31
+
+            cy.get('.form-group > #user-message').should("be.visible").type("Demo del contenido")
+            cy.get('#get-input > .btn').should("be.visible").click()
+
+            cy.get('#sum1').should("be.visible").and("have.class","form-control").type(a)
+            cy.get('#sum2').should("be.visible").and("have.class","form-control").type(b)
+
+            cy.contains("[type='button']","Get Total").click()
+
+            cy.get('#displayvalue').should("be.visible").then((e)=>{
+                let sum = a + b
+                cy.log(sum)
+                cy.log(e.text())
+                let res = e.text()
+                if(sum == res){
+                    cy.log("Suma correcta")
+                }else{
+                    cy.log("La suma es incorrecta")
+                }
+                if( res > 50){
+                    cy.wait(time)
+                    a = a - 10
+                    b = b - 10
+                    //cy.get('#sum1').should("be.visible").and("have.class","form-control").clear().type(a)
+                    cy.get('#sum1').invoke("attr","placeholder").should("contain","Enter value").
+                    then(()=>{
+                        cy.get('#sum1').clear().type(a)
+                        cy.get('#sum1').invoke("attr","style","color:blue")
+                    })
+                    cy.wait(time)
+                    cy.get('#sum2').should("be.visible").and("have.class","form-control").clear().type(b)
+                    cy.wait(time)
+                    cy.contains("[type='button']","Get Total").click()
+                    cy.get("#displayvalue").should("be.visible").then((e)=>{
+                        cy.get("#displayvalue").invoke("attr","style","color:red")
+                    })
+                }else{
+                    cy.wait(time)
+                    a = a + 5
+                    b = b + 5
+                    cy.get('#sum1').should("be.visible").and("have.class","form-control").clear().type(a)
+                    cy.wait(time)
+                    cy.get('#sum2').should("be.visible").and("have.class","form-control").clear().type(b)
+                    cy.wait(time)
+                    cy.contains("[type='button']","Get Total").click()
+                }
+
+            })
+            
+        })// cierre de it
+
+
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false;
            });
