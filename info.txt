@@ -10,6 +10,12 @@ para instalar e xpath-> npm install -D cypress-xpath
 para llamar el xpath-> require('cypress-xpath');
 
 para que reconosca el references-> npm i -D cypress
-para llamar la libreria -> /// <reference types = "Cypress" />
+para llamarlo -> /// <reference types = "Cypress" />
+
+plug in para cargar imagenes->npm install --save-dev cypress-file-upload
+para llamarlo-> import 'cypress-file-upload'
+
+plug in drag and drop-> npm install --save-dev @4tw/cypress-drag-drop
+llamar ->require('@4tw/cypress-drag-drop')
 
 
